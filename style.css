@@ -1,0 +1,24 @@
+#canvas-container{
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-family: Comfortaa;
+}
+
+button {
+    font-family: Comfortaa;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0);
+
+}
+
+body {
+    background: linear-gradient(lemonchiffon, pink);
+    min-height: 96.4vh;
+}
+
+#gameover {
+    text-align: center;
+}
