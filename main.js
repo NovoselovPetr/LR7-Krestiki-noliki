@@ -27,7 +27,7 @@ function drawBoard(){
         for(let j = 0; j < 3; j++){
             board[i][j] = id;
             id++;
-            ctx.strokeRect(j * 150, i * 150, 150, 150);
+            ctx.strokeRect(j * 250, i * 250, 250, 250);
         }
     }
 }
@@ -40,8 +40,8 @@ canvas.addEventListener("click", function(event){
 
     let X = event.clientX - canvas.getBoundingClientRect().x;
     let Y = event.clientY - canvas.getBoundingClientRect().y;
-    let i = Math.floor(Y/150);
-    let j = Math.floor(X/150);
+    let i = Math.floor(Y/250);
+    let j = Math.floor(X/250);
 
     let id = board[i][j];
 
@@ -82,7 +82,7 @@ function draw(player, i, j) {
         } else {
             img = imageX;
         }
-        ctx.drawImage(img, j * 150, i * 150);
+        ctx.drawImage(img, j * 250, i * 250);
     }
 
 function win(data, player){
