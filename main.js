@@ -7,7 +7,7 @@ imageX.src = "img/X.png";
 const imageO = new Image();
 imageO.src = "img/O.png";
 let currentPlayer = "X";
-const gameOverElement = document.getElementById("gameover");
+const gameOverEl = document.getElementById("gameover");
 let gameOver = false;
 const winCombinations = [
         [0, 1, 2],
@@ -54,20 +54,19 @@ canvas.addEventListener("click", function(event){
     } else {
         data[id] = "O";
     }
-    drawOnBoard(currentPlayer, i, j);
+    draw(currentPlayer, i, j);
 
-    if (isWin(data, currentPlayer)){
+    if (win(data, currentPlayer)){
         showGameOver(currentPlayer);
         gameOver = true;
         return;
     }
 
-    if (isTie(data)) {
+    if (tie(data)) {
         showGameOver("tie");
         gameOver = true;
         return;
     }
-
 
     if (currentPlayer == "X") {
         currentPlayer = "O";
@@ -76,7 +75,7 @@ canvas.addEventListener("click", function(event){
     }
 });
 
-function drawOnBoard(player, i, j) {
+function draw(player, i, j) {
         let img;
         if (player == "O") {
             img = imageO;
@@ -86,7 +85,7 @@ function drawOnBoard(player, i, j) {
         ctx.drawImage(img, j * 150, i * 150);
     }
 
-function isWin(data, player){
+function win(data, player){
     for(let i = 0; i < winCombinations.length; i++){
         let win = true;
         for(let j = 0; j < winCombinations[i].length; j++){
@@ -104,12 +103,12 @@ function isWin(data, player){
     return false;
 }
 
-function isTie(gameData) {
-    let isBoardFill = true;
+function tie(gameData) {
+    let fullBoard = true;
     for (let i = 0; i < gameData.length; i++) {
-        isBoardFill = gameData[i] && isBoardFill;
+        fullBoard = gameData[i] && fullBoard;
     }
-    if (isBoardFill) {
+    if (fullBoard) {
         return true;
     }
     return false;
@@ -124,10 +123,10 @@ function showGameOver(player){
     }
     let imgSrc = "img/" + player + ".png";
 
-    gameOverElement.innerHTML = `<h1 id="win">${message}</h1>`;
+    gameOverEl.innerHTML = `<h1 id="win">${message}</h1>`;
     if (player != "tie") {
-        gameOverElement.innerHTML += `<img src=${imgSrc} </img>`;
+        gameOverEl.innerHTML += `<img src=${imgSrc} </img>`;
     }
-    gameOverElement.innerHTML += '<br><button onclick="location.reload()">Играть ещё</button>';
+    gameOverEl.innerHTML += '<br><button onclick="location.reload()">Играть ещё</button>';
 
 }
